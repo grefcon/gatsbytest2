@@ -1,105 +1,360 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.com">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's default starter
-</h1>
+<a href="https://www.gatsbyjs.com">
+  <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+</a>
 
-Kick off your project with this default boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
+# Gatsby Starter WordPress Homepage
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.com/docs/gatsby-starters/)._
+Create a homepage using Gatsby and WordPress. This starter demonstrates how to use WordPress to build a homepage and can be customized to match your own visual branding.
 
-## 🚀 Quick start
+[View the Demo](https://gatsbywordpresshomepage.gatsbyjs.io/)
 
-1.  **Create a Gatsby site.**
+**Note:**
+This version of the WordPress homepage starter is written in JavaScript. If you want to use WordPress but TypeScript is more your style, there is also a TypeScript version maintained on [GitHub](https://github.com/gatsbyjs/gatsby-starter-wordpress-homepage-ts).
 
-    Use the Gatsby CLI ([install instructions](https://www.gatsbyjs.com/docs/tutorial/part-0/#gatsby-cli)) to create a new site, specifying the default starter.
+## Quick start
 
-    ```shell
-    # create a new Gatsby site using the default starter
-    gatsby new my-default-starter https://github.com/gatsbyjs/gatsby-starter-default
-    ```
+You will need a new or existing WordPress instance to use this starter.
+This starter requires the following plugins to be installed in your WordPress instance:
 
-1.  **Start developing.**
+- [WPGatsby][]
+- [WPGraphQL][]
+- [Advanced Custom Fields][]
+- [WPGraphQL for Advanced Custom Fields][]
 
-    Navigate into your new site’s directory and start it up.
+Once these plugins are installed, you'll need the URL of the GraphQL endpoint for configuration.
 
-    ```shell
-    cd my-default-starter/
-    gatsby develop
-    ```
+[wpgatsby]: https://wordpress.org/plugins/wp-gatsby/
+[wpgraphql]: https://wordpress.org/plugins/wp-graphql/
+[advanced custom fields]: https://wordpress.org/plugins/advanced-custom-fields/
+[wpgraphql for advanced custom fields]: https://github.com/wp-graphql/wp-graphql-acf
 
-1.  **Open the source code and start editing!**
+1. **Create a Gatsby site**
 
-    Your site is now running at `http://localhost:8000`!
+   Use the Gatsby CLI to get started locally:
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby Tutorial](https://www.gatsbyjs.com/docs/tutorial/part-4/#use-graphiql-to-explore-the-data-layer-and-write-graphql-queries)._
+   ```sh repo
+   npx gatsby new my-homepage https://github.com/gatsbyjs/gatsby-starter-wordpress-homepage
+   ```
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+1. **Import content to your WordPress instance**
 
-## 🚀 Quick start (Gatsby Cloud)
+   - In your WordPress Admin, navigate to _Custom Fields_ > _Tools_ and upload the `data/acf-field-groups.json` file in the _Import Field Groups_ form and click _Import File_.
+   - Under _Pages_, create a new page called "Homepage."
+   - Ensure that the Homepage imported into WordPress is set to be your site's "Homepage" by going to _Settings_ > _Reading_ and setting the _Your homepage displays_ field to _A static page_ and select _Homepage_ from the dropdown.
+   - Navigate back to the Homepage, where you should see the custom field groups for the homepage and you can add your own content.
+   - Finally, go to _GraphQL_ > _Settings_ and copy the endpoint for the GraphQL API (e.g. https://example.com/graphql) and create a `.env` file with `WPGRAPHQL_URL="<your-graphql-endpoint-url>"`.
 
-Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
+1. **Start developing**
 
-[<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-default)
+   In your site directory, start the development server:
 
-## 🧐 What's inside?
+   ```sh
+   yarn start
+   ```
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+   Your site should now be running at <http://localhost:8000>
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+1. **Open the source code and start editing**
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+## Deploy your site
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+Once your content is available in WordPress, deploy your site to [Gatsby Cloud](https://gatsbyjs.com/products/cloud):
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+1. Push your local site to a new repo in either GitHub, GitLab, or Bitbucket
+1. Log into your [Gatsby Cloud Dashboard][] and click on **Add a site**
+1. Use the **Import from a Git repository** option to find your site
+1. Add the environment variables from your `.env.production` file to Gatsby Cloud during setup
+1. Click **Build site** and your site should start building
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+For a more detailed walkthrough, see the tutorial on how to [build your site with Gatsby Cloud][tutorial].
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+[gatsby cloud dashboard]: https://gatsbyjs.com/dashboard
+[tutorial]: https://www.gatsbyjs.com/docs/tutorial/part-1/#build-your-site-with-gatsby-cloud
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) for more detail).
+### Deploy without using the CLI
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+Alternatively, you can deploy this starter directly to Gatsby Cloud.
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
+Note that you will need to set up your content in WordPress manually.
 
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
+[![Deploy to Gatsby](https://www.gatsbyjs.com/deploynow.svg "Deploy to Gatsby")](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-wordpress-homepage)
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+## Setting up Gatsby Cloud Preview
 
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+To use Gatsby Cloud Preview with this site, see the documentation for
+[Setting up Preview with WPGatsby][].
 
-12. **`README.md`**: A text file containing useful reference information about your project.
+[setting up preview with wpgatsby]: https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/docs/tutorials/configuring-wp-gatsby.md#setting-up-preview
+
+## What's included?
+
+```sh
+├── README.md
+├── gatsby-config.js
+├── gatsby-node.js
+├── src
+│   ├── components
+│   ├── pages
+│   ├── colors.css.ts
+│   ├── styles.css.ts
+│   └── theme.css.ts
+└── .env.EXAMPLE
+```
+
+1. **`gatsby-config.js`**: [Gatsby config][] file that includes plugins required for this starter.
+1. **`gatsby-node.js`**: [Gatsby Node][] config file that creates an abstract data model for the homepage content.
+1. **`src/`**: The source directory for the starter, including pages, components, and [Vanilla Extract][] files for styling.
+
+[gatsby config]: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
+[gatsby node]: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/
+[vanilla extract]: https://vanilla-extract.style/
+
+## How to
+
+### Update the color theme
+
+To update the colors used in this starter, edit the `src/colors.css.ts` file.
+
+```.ts
+// src/colors.css.ts
+export const colors = {
+  background: "#fff",
+  text: "#004ca3",
+  primary: "#004ca3",
+  muted: "#f5fcff",
+  active: "#001d3d",
+  black: "#000",
+}
+
+```
+
+If you'd like to add additional colors, add additional keys to this object.
+This file is imported into `src/theme.css.ts` and creates CSS custom properties, that can be imported and used in other `.css.ts` files.
+
+The UI components file `src/components/ui.js` imports styles from `src/components/ui.css.ts`. You can see how the theme and color values are being used in this file.
+
+### Add your logo
+
+![Logo](./docs/images/logo.png)
+
+Replace the `src/components/brand-logo.js` component with your own brand logo.
+If you have an SVG version, it can be rendered inline as a React component, following the example in this file. Note that SVG attributes will need to be camel cased for JSX.
+
+Using an inline SVG for the logo allows it to pick up the colors used in CSS, which is how the logo colors are inverted for the mobile menu.
+
+If you prefer to use an image, use the [`StaticImage`](https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-plugin-image/#staticimage) component from `gatsby-plugin-image` in place of the SVG in this file.
+
+### Customize headings, buttons, and other styles
+
+![Headings & Buttons](./docs/images/headings-buttons.png)
+
+To further customize the look and feel of the homepage, edit the UI components in `src/components/ui.js` and styles in `src/components/ui.css.ts`.
+
+### Customize section components
+
+To customize any of the sections of the homepage, edit the relevant component in `src/components`.
+Most of the styles for these components are handled with shared UI components in `src/components/ui.js`.
+
+### Create custom section components
+
+To create a new type of section in your homepage, you'll want to create a new section component, using the existing components as an example.
+For this example, we'll create a new "Banner" component.
+
+1. First, update your custom fields in WordPress to support the new component
+
+   Under the _Custom Fields_ tab, create a new _Field Group_ and call it "Homepage Banner."
+   For this example, add two text fields: `banner_heading` and `banner_text`.
+   In the _Location_ rules, be sure to show the field group in _Page_ post types.
+   Also ensure that the _Show in GraphQL_ option is enabled for this field.
+
+   Navigate to the _Pages_ tab and edit the Homepage and add content for the new Banner component.
+
+1. Update `gatsby-node.js`
+
+   Edit your site's `gatsby-node.js` file, adding a type for `HomepageBanner` that matches your custom fields in WordPress.
+   This allows the homepage to query the abstract `HomepageBanner` type.
+
+   ```js
+   // in gatsby-node.js
+   exports.createSchemaCustomization = async ({ actions }) => {
+     // ...
+     actions.createTypes(`
+       type HomepageBanner implements Node & HomepageBlock {
+         id: ID!
+         blocktype: String
+         heading: String
+         text: String
+       }
+     `)
+     // ...
+   }
+   // ...
+   exports.onCreateNode = ({ actions, node, createNodeId, createContentDigest }) => {
+   }
+     // ...
+     switch (node.internal.type) {
+       case "WpPage":
+         if (node.slug !== "homepage") return
+         const {
+           homepageHero,
+           homepageCta,
+           statList,
+           testimonialList,
+           productList,
+           logoList,
+           featureList,
+           benefitList,
+           // add the new custom field group here
+           homepageBanner,
+         } = node
+
+         const heroID = createNodeId(`${node.id} >>> HomepageHero`)
+         // create an node id for the field group
+         const bannerID = createNodeId(`${node.id} >>> HomepageBanner`)
+         // ...
+
+         // create a new node for this field group
+         actions.createNode({
+           id: bannerID,
+           internal: {
+             type: "HomepageBanner",
+             contentDigest: createContentDigest(JSON.stringify(homepageBanner)),
+           },
+           parent: node.id,
+           blocktype: "HomepageBanner",
+           heading: homepageBanner.bannerHeading,
+           text: homepageBanner.bannerText,
+         })
+         // ...
+         actions.createNode({
+           ...node,
+           id: createNodeId(`${node.id} >>> Homepage`),
+           internal: {
+             type: "Homepage",
+             contentDigest: node.internal.contentDigest,
+           },
+           parent: node.id,
+           blocktype: "Homepage",
+           image: node.featuredImageId,
+           content: [
+             heroID,
+             logosID,
+             // add your banner content in the postion you would like it to appear on the page
+             bannerID,
+             productsID,
+             featuresID,
+             benefitsID,
+             statsID,
+             testimonialsID,
+             ctaID,
+           ],
+         })
+         // ...
+     }
+   }
+   ```
+
+1. Next, create the Banner component:
+
+   ```jsx fileExt
+   // src/components/banner.js
+   import * as React from "react"
+   import { graphql } from "gatsby"
+   import { Section, Container, Heading, Text } from "./ui"
+
+   export default function Banner(props) {
+     return (
+       <Section>
+         <Container>
+           <Heading>{props.heading}</Heading>
+           <Text>{props.text}</Text>
+         </Container>
+       </Section>
+     )
+   }
+
+   export const query = graphql`
+     fragment HomepageBannerContent on HomepageBanner {
+       id
+       heading
+       text
+     }
+   `
+   ```
+
+1. Export the component from `src/components/sections.js`
+
+   ```js fileExt
+   // src/components/sections.js
+   export { default as HomepageHero } from "./hero"
+   export { default as HomepageFeature } from "./feature"
+   export { default as HomepageFeatureList } from "./feature-list"
+   export { default as HomepageLogoList } from "./logo-list"
+   export { default as HomepageBenefitList } from "./benefit-list"
+   export { default as HomepageTestimonialList } from "./testimonial-list"
+   export { default as HomepageStatList } from "./stat-list"
+   export { default as HomepageCta } from "./cta"
+   export { default as HomepageProductList } from "./product-list"
+
+   // add export for new component
+   export { default as HomepageBanner } from "./banner"
+   ```
+
+1. Add the GraphQL query fragment to the query in `src/pages/index.js`
+
+   ```js fileExt
+   // in src/pages/index.js
+   export const query = graphql`
+     {
+       homepage {
+         id
+         title
+         description
+         image {
+           id
+           url
+         }
+         blocks: content {
+           id
+           blocktype
+           ...HomepageHeroContent
+           ...HomepageFeatureContent
+           ...HomepageFeatureListContent
+           ...HomepageCtaContent
+           ...HomepageLogoListContent
+           ...HomepageTestimonialListContent
+           ...HomepageBenefitListContent
+           ...HomepageStatListContent
+           ...HomepageProductListContent
+           # New component fragment
+           ...HomepageBannerContent
+         }
+       }
+     }
+   `
+   ```
+
+## Troubleshooting
+
+### Errors after making changes to the schema
+
+If you've made changes to the `gatsby-node.js` file or changes to the WordPress data model, clear the Gatsby cache before running the develop server:
+
+```sh
+yarn clean && yarn start
+```
+
+---
 
 ## 🎓 Learning Gatsby
 
 Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.com/). Here are some places to start:
 
 - **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.com/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.com/docs/).**
 
 ## 💫 Deploy
 
-[Build, Deploy, and Host On The Only Cloud Built For Gatsby](https://www.gatsbyjs.com/products/cloud/)
+[Build, Deploy, and Host On The Only Cloud Built For Gatsby](https://www.gatsbyjs.com/cloud/)
 
 Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
-
-<!-- AUTO-GENERATED-CONTENT:END -->

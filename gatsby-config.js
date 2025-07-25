@@ -1,33 +1,37 @@
+// support for .env, .env.development, and .env.production
+require("dotenv").config()
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: "https://gatsbywordpresshomepage.gatsbyjs.io/",
+    title: "Gatsby WordPress Homepage Starter",
+    author: `Gatsby`,
+    description: "A Gatsby Starter for building homepages with WordPress",
   },
   plugins: [
-    `gatsby-plugin-image`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-wordpress",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        url: process.env.WPGRAPHQL_URL,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    "gatsby-plugin-sharp",
+    "gatsby-plugin-image",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-vanilla-extract",
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        name: "Gatsby Starter WordPress Homepage",
+        short_name: "Gatsby",
+        start_url: "/",
+        // These can be imported once ESM support lands
+        background_color: "#ffffff",
+        theme_color: "#004ca3",
+        icon: "src/favicon.png",
       },
     },
   ],
